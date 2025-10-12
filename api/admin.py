@@ -9,7 +9,6 @@ class UserAdmin(BaseUserAdmin):
         (None, {"fields": ("username", "password")}),
         ("Personal info", {"fields": ("first_name", "last_name", "email")}),
         ("Permissions", {"fields": ("role", "is_active", "is_staff", "is_superuser", "groups", "user_permissions")}),
-        # مهم: سيب بس الحقول القابلة للعرض هنا، ومش لازم تضيف created_at/updated_at هنا
         ("Important dates", {"fields": ("last_login", "date_joined")}),
     )
     add_fieldsets = (
@@ -19,9 +18,8 @@ class UserAdmin(BaseUserAdmin):
         }),
     )
 
-    # دول Read-only عشان ما يحصلش FieldError
-    readonly_fields = ("last_login", "date_joined", "created_at", "updated_at")
 
+    readonly_fields = ("last_login", "date_joined", "created_at", "updated_at")
     list_display = ("username", "email", "role", "is_active", "is_staff")
     list_filter = ("role", "is_active", "is_staff", "is_superuser")
     search_fields = ("username", "email")
